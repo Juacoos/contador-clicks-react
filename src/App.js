@@ -1,23 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import Boton from './componentes/Boton';
+import Contador from './componentes/Contador';
+import logoReact from './imagenes/logo-react.png';
+import { useState } from 'react';
 
 function App() {
+
+  const [nClicks, setNClicks] = useState(0);
+
+  const manejarClick = () => {
+    setNClicks(nClicks + 1);
+  }
+
+  const reiniciarContador = () =>{
+    setNClicks(0);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Contador de Cicks del Joaco con React</h1>
+      <div className='logo-contenedor'>
+        
+        <img 
+        className='logo'
+        src={logoReact}
+        alt='logo'
+        />
+      </div>
+      <div className='contenedor-principal'>
+        <Contador nClicks={nClicks} />
+        <Boton 
+          texto='Click'
+          esBotonDeClick={true}
+          manejarClick={manejarClick}/>
+        <Boton 
+          texto='Reiniciar'
+          esBotonDeClick={false}
+          manejarClick={reiniciarContador}
+          />
+      </div>
     </div>
   );
 }
